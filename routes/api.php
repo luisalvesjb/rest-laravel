@@ -13,31 +13,39 @@ use Illuminate\Http\Request;
 |
 */
 
+
+
+
+// Route::apiResources([
+//     'produtos' => 'ProdutoController',
+// ]);
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:api'], function(){
 
-    Route::apiResources([
-        'produtos' => 'ProdutoController',
-    ]);
 
-});
+// Route::group(['middleware' => 'auth:api'], function(){
 
-Route::get('login', function(Request $request){
+//     //aquim apenas rotas com token
 
-    $data = $request->only('email','password');
-    $token = \Auth::guard('api')->attempt($data);
+// });
 
-    if(!$token){
-        return response()->json([
-            'msg' => 'Invalids Credentials'
-        ], 400);
-    }
+// Route::get('login', function(Request $request){
 
-    return [
-        'token' => $token
-    ];
+//     $data = $request->only('email','password');
+//     $token = \Auth::guard('api')->attempt($data);
 
-});
+//     if(!$token){
+//         return response()->json([
+//             'msg' => 'Invalids Credentials'
+//         ], 400);
+//     }
+
+//     return [
+//         'token' => $token
+//     ];
+
+// });
